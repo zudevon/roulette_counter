@@ -1,0 +1,321 @@
+:root {
+  color-scheme: dark;
+  --bg: #101214;
+  --panel: #191d21;
+  --panel-2: #20262b;
+  --text: #f2f5f3;
+  --muted: #9da8a4;
+  --line: #30383d;
+  --green: #1f9d69;
+  --red: #c93d35;
+  --black: #0b0d0f;
+  --gold: #d4a72c;
+  --blue: #4d8dff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.app {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 40px;
+}
+
+.topbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 22px;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 4.25rem);
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+h2 {
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
+p,
+.note,
+dt,
+.history-head span {
+  color: var(--muted);
+}
+
+.topbar p {
+  margin-top: 10px;
+  max-width: 620px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 230px 120px 140px;
+  gap: 10px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+select,
+input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 0 12px;
+}
+
+.entry-panel,
+.history-panel,
+.market-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.entry-panel,
+.history-panel {
+  padding: 18px;
+}
+
+.entry-head,
+.history-head,
+.market-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.entry-head p {
+  margin-top: 4px;
+  font-size: 0.92rem;
+}
+
+.entry-actions {
+  display: flex;
+  gap: 8px;
+}
+
+button {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel-2);
+  color: var(--text);
+  cursor: pointer;
+  padding: 0 14px;
+}
+
+button:hover {
+  border-color: #566269;
+}
+
+.ghost {
+  color: var(--muted);
+}
+
+.danger {
+  color: #ffb7b1;
+}
+
+.number-grid {
+  display: grid;
+  grid-template-columns: repeat(13, minmax(48px, 1fr));
+  gap: 8px;
+}
+
+.number-btn {
+  position: relative;
+  aspect-ratio: 1;
+  min-height: 0;
+  padding: 0;
+  font-weight: 800;
+  font-size: 1.05rem;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.number-btn.red {
+  background: var(--red);
+}
+
+.number-btn.black {
+  background: var(--black);
+}
+
+.number-btn.green {
+  background: var(--green);
+}
+
+.number-btn.hidden {
+  display: none;
+}
+
+.strategy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 14px 0;
+}
+
+.market-card {
+  padding: 16px;
+}
+
+.odds-pill {
+  flex: 0 0 auto;
+  border: 1px solid rgba(212, 167, 44, 0.45);
+  border-radius: 999px;
+  color: #f3d37c;
+  padding: 5px 9px;
+  font-size: 0.82rem;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+dt {
+  font-size: 0.78rem;
+  margin-bottom: 4px;
+}
+
+dd {
+  margin: 0;
+  font-size: 1.28rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+[data-field="bet"] {
+  color: #8fb6ff;
+}
+
+[data-field="target"] {
+  color: #f3d37c;
+}
+
+.history {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 44px;
+}
+
+.history.empty {
+  align-items: center;
+  color: var(--muted);
+}
+
+.chip {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-weight: 800;
+  border: 2px solid rgba(255, 255, 255, 0.22);
+}
+
+.chip.red {
+  background: var(--red);
+}
+
+.chip.black {
+  background: var(--black);
+}
+
+.chip.green {
+  background: var(--green);
+}
+
+.note {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-left: 4px solid var(--gold);
+  background: rgba(212, 167, 44, 0.08);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .topbar,
+  .strategy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .controls {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .number-grid {
+    grid-template-columns: repeat(8, minmax(40px, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .app {
+    width: min(100% - 20px, 1180px);
+    padding-top: 18px;
+  }
+
+  .controls,
+  dl {
+    grid-template-columns: 1fr;
+  }
+
+  .entry-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .entry-actions {
+    width: 100%;
+  }
+
+  .entry-actions button {
+    flex: 1;
+  }
+
+  .number-grid {
+    grid-template-columns: repeat(5, minmax(42px, 1fr));
+  }
+}

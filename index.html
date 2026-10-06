@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Roulette Counter</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <h1>Roulette Counter</h1>
+          <p>Track streaks, martingale stakes, and true per-spin odds for outside bets.</p>
+        </div>
+        <div class="controls">
+          <label>
+            Wheel
+            <select id="wheelType">
+              <option value="european">European: single zero</option>
+              <option value="american">US: double zero</option>
+            </select>
+          </label>
+          <label>
+            Base bet
+            <input id="baseBet" type="number" min="1" step="1" value="5">
+          </label>
+          <label>
+            Trigger streak
+            <input id="triggerStreak" type="number" min="1" step="1" value="3">
+          </label>
+        </div>
+      </header>
+
+      <section class="entry-panel">
+        <div class="entry-head">
+          <div>
+            <h2>Enter Spins</h2>
+            <p>Tap a number as it lands. Use 00 for the US wheel.</p>
+          </div>
+          <div class="entry-actions">
+            <button id="undoBtn" class="ghost" type="button" title="Undo last spin">Undo</button>
+            <button id="clearBtn" class="danger" type="button" title="Clear all spins">Clear</button>
+          </div>
+        </div>
+        <div id="numberGrid" class="number-grid" aria-label="Roulette numbers"></div>
+      </section>
+
+      <section class="strategy-grid" aria-label="Strategy recommendations">
+        <article class="market-card" data-market="range">
+          <div class="market-title">
+            <h2>1-18 / 19-36</h2>
+            <span class="odds-pill" data-field="odds"></span>
+          </div>
+          <dl>
+            <div>
+              <dt>Current streak</dt>
+              <dd data-field="streak">-</dd>
+            </div>
+            <div>
+              <dt>Target odds</dt>
+              <dd data-field="targetOdds">-</dd>
+            </div>
+            <div>
+              <dt>Next bet</dt>
+              <dd data-field="bet">Wait</dd>
+            </div>
+            <div>
+              <dt>Target</dt>
+              <dd data-field="target">-</dd>
+            </div>
+            <div>
+              <dt>Bankroll at risk</dt>
+              <dd data-field="risk">$0</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="market-card" data-market="parity">
+          <div class="market-title">
+            <h2>Even / Odd</h2>
+            <span class="odds-pill" data-field="odds"></span>
+          </div>
+          <dl>
+            <div>
+              <dt>Current streak</dt>
+              <dd data-field="streak">-</dd>
+            </div>
+            <div>
+              <dt>Target odds</dt>
+              <dd data-field="targetOdds">-</dd>
+            </div>
+            <div>
+              <dt>Next bet</dt>
+              <dd data-field="bet">Wait</dd>
+            </div>
+            <div>
+              <dt>Target</dt>
+              <dd data-field="target">-</dd>
+            </div>
+            <div>
+              <dt>Bankroll at risk</dt>
+              <dd data-field="risk">$0</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="market-card" data-market="color">
+          <div class="market-title">
+            <h2>Black / Red</h2>
+            <span class="odds-pill" data-field="odds"></span>
+          </div>
+          <dl>
+            <div>
+              <dt>Current streak</dt>
+              <dd data-field="streak">-</dd>
+            </div>
+            <div>
+              <dt>Target odds</dt>
+              <dd data-field="targetOdds">-</dd>
+            </div>
+            <div>
+              <dt>Next bet</dt>
+              <dd data-field="bet">Wait</dd>
+            </div>
+            <div>
+              <dt>Target</dt>
+              <dd data-field="target">-</dd>
+            </div>
+            <div>
+              <dt>Bankroll at risk</dt>
+              <dd data-field="risk">$0</dd>
+            </div>
+          </dl>
+        </article>
+      </section>
+
+      <section class="history-panel">
+        <div class="history-head">
+          <h2>Spin History</h2>
+          <span id="spinCount">0 spins</span>
+        </div>
+        <div id="history" class="history empty">No spins yet</div>
+      </section>
+
+      <aside class="note">
+        Roulette spins are independent. A three-spin streak can trigger this betting rule, but it does not make the next spin more likely to reverse.
+        Zero and double-zero lose on these even-money bets.
+      </aside>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
